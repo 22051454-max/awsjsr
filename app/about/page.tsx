@@ -109,7 +109,7 @@ export default function AboutPage() {
                 </div>
                 <p className="text-white leading-relaxed font-medium">
                   To empower tribal communities through comprehensive welfare programs, education, healthcare,
-                  employment generation, and sustainable development initiatives that honor their traditions.
+                  employment , and sustainable development initiatives that honor their traditions.
                 </p>
               </div>
             </motion.div>
