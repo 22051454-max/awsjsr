@@ -308,8 +308,8 @@ export default function ContactPage() {
               <Phone className="w-12 h-12 text-[#E96424] mx-auto mb-4" />
               <h4 className="text-white font-bold text-lg mb-2">Emergency Contact</h4>
               <p className="text-white mb-4">For urgent matters and immediate assistance</p>
-              <a href="tel:+919876543210" className="text-[#F4A300] hover:text-[#E96424] transition-colors">
-                +91 9876543210
+              <a href="tel:+919204858570" className="text-[#F4A300] hover:text-[#E96424] transition-colors">
+                +91 9204858570
               </a>
             </div>
           </motion.div>

@@ -70,7 +70,7 @@ export default function OurWorkPage() {
       title: "Industrial Cleaning",
       description:
         "Comprehensive cleaning services for industrial and commercial establishments, ensuring hygiene and safety standards.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/images/gallery/industrial-cleaning.png",
       achievements: ["Industrial Standards", "Trained Staff", "Eco-friendly Methods"],
     },
   ]
