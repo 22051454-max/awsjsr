@@ -15,7 +15,6 @@ export default function AboutPage() {
 
   const stats = [
     { icon: Building, label: "Infrastructure Projects", value: "50+" },
-    { icon: TrendingUp, label: "Annual Turnover", value: "₹10Cr+" },
     { icon: Users, label: "Employees", value: "500+" },
     { icon: Award, label: "Awards Received", value: "15+" },
   ]
