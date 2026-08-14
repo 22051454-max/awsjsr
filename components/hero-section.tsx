@@ -76,7 +76,7 @@ export default function HeroSection() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-[#E96424] to-[#F4A300] hover:from-[#F4A300] hover:to-[#E96424] text-white font-bold px-8 py-4 rounded-full text-lg shadow-2xl border-2 border-[#C98C32] relative overflow-hidden group"
+                className="bg-gradient-to-r from-[#E96424] to-[#F4A300] hover:from-[#F4A300] hover:to-[#E96424] text-white font-bold px-8 py-4 rounded-full text-lg shadow-2xl border-2 border-[#C98C32] relative overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <Heart className="w-5 h-5" />
