@@ -62,7 +62,7 @@ export default function Header() {
             {/* Donate Button */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link href="/donate">
-                <Button className="bg-gradient-to-r from-[#E96424] to-[#F4A300] hover:from-[#F4A300] hover:to-[#E96424] text-white font-bold px-6 py-2 rounded-full shadow-lg border-2 border-[#C98C32] relative overflow-hidden group">
+                <Button className="bg-gradient-to-r from-[#E96424] to-[#F4A300] hover:from-[#F4A300] hover:to-[#E96424] text-white font-bold px-6 py-2 rounded-full shadow-lg border-2 border-[#C98C32] relative overflow-hidden">
                   <span className="relative z-10">Donate Now</span>
                   <div className="absolute inset-0 bg-[url('/images/tribal-pattern.jpeg')] opacity-20 bg-cover bg-center" />
                 </Button>
