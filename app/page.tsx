@@ -6,15 +6,31 @@ import IntroPage from '@/components/intro-page'
 import HomePage from '@/components/home-page'
 
 export default function Page() {
-  const [showIntro, setShowIntro] = useState(true)
+  const [showIntro, setShowIntro] = useState<boolean | null>(null)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // Check if intro has been shown in this session
+    const introShown = sessionStorage.getItem('introShown')
+    
+    if (introShown === 'true') {
+      // Intro was already shown, skip it
       setShowIntro(false)
-    }, 4500)
+    } else {
+      // Show intro and mark it as shown
+      setShowIntro(true)
+      const timer = setTimeout(() => {
+        setShowIntro(false)
+        sessionStorage.setItem('introShown', 'true')
+      }, 4500)
 
-    return () => clearTimeout(timer)
+      return () => clearTimeout(timer)
+    }
   }, [])
+
+  // Don't render anything until state is determined (prevents hydration mismatch)
+  if (showIntro === null) {
+    return null
+  }
 
   return (
     <>
