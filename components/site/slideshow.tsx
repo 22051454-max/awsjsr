@@ -92,18 +92,22 @@ export default function Slideshow({
       )}
 
       {showDots && slides.length > 1 && (
-        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+        <div className="absolute bottom-1 left-1/2 flex -translate-x-1/2">
           {slides.map((sl, k) => (
             <button
               key={sl.src}
               type="button"
               aria-label={`Show photo ${k + 1}`}
               onClick={() => setI(k)}
-              className={cn(
-                "h-2 rounded-full bg-rice/60 transition-all",
-                k === i ? "w-6 bg-haldi" : "w-2 hover:bg-rice",
-              )}
-            />
+              className="group grid h-8 place-items-center px-1"
+            >
+              <span
+                className={cn(
+                  "h-2 rounded-full bg-rice/60 transition-all",
+                  k === i ? "w-6 bg-haldi" : "w-2 group-hover:bg-rice",
+                )}
+              />
+            </button>
           ))}
         </div>
       )}

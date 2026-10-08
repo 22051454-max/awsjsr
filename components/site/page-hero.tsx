@@ -27,7 +27,7 @@ export default function PageHero({
       <Sun className="animate-sway absolute left-[8%] top-10 hidden h-12 w-12 text-haldi/40 md:block" />
       <div className="container-x relative py-16 md:py-24">
         <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-sm text-rice/60">
-          <Link href="/" className="hover:text-haldi">
+          <Link href="/" className="-my-2 py-2 hover:text-haldi">
             Home
           </Link>
           <ChevronRight className="h-3.5 w-3.5" />

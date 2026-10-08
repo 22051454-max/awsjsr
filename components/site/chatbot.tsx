@@ -83,12 +83,12 @@ export default function Chatbot() {
         aria-expanded={open}
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.94 }}
-        className="fixed bottom-5 right-5 z-50 grid h-16 w-16 place-items-center rounded-full bg-sindoor text-rice shadow-[0_6px_0_#7a2e18,0_14px_30px_-6px_rgba(43,27,18,.6)] ring-4 ring-rice"
+        className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-50 grid h-14 w-14 place-items-center sm:bottom-5 sm:right-5 sm:h-16 sm:w-16 rounded-full bg-sindoor text-rice shadow-[0_6px_0_#7a2e18,0_14px_30px_-6px_rgba(43,27,18,.6)] ring-4 ring-rice"
       >
         {!open && (
           <span className="absolute inset-0 animate-ping rounded-full bg-sindoor/40 [animation-duration:2.5s]" />
         )}
-        {open ? <X className="h-6 w-6" /> : <MessageCircle className="relative h-7 w-7" />}
+        {open ? <X className="h-6 w-6" /> : <MessageCircle className="relative h-6 w-6 sm:h-7 sm:w-7" />}
         {!open && (
           <span className="absolute right-1 top-1 h-3.5 w-3.5 animate-pulse rounded-full bg-haldi ring-2 ring-rice" />
         )}
@@ -101,7 +101,7 @@ export default function Chatbot() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-4 z-50 flex h-[min(560px,calc(100dvh-8rem))] w-[calc(100vw-2rem)] max-w-sm origin-bottom-right flex-col overflow-hidden rounded-3xl border-2 border-soil/10 bg-rice shadow-2xl"
+            className="fixed bottom-[calc(max(1rem,env(safe-area-inset-bottom))+4.25rem)] right-4 z-50 flex h-[min(560px,calc(100dvh-7rem))] w-[calc(100vw-2rem)] sm:bottom-24 sm:h-[min(560px,calc(100dvh-8rem))] max-w-sm origin-bottom-right flex-col overflow-hidden rounded-3xl border-2 border-soil/10 bg-rice shadow-2xl"
           >
             <div className="mud-wall flex items-center gap-3 px-4 py-3.5">
               <Image
@@ -144,7 +144,7 @@ export default function Chatbot() {
                           key={o.action}
                           type="button"
                           onClick={() => choose(o)}
-                          className="rounded-full border-2 border-sindoor/30 bg-rice px-3 py-1.5 text-xs font-bold text-sindoor transition hover:border-sindoor hover:bg-sindoor hover:text-rice"
+                          className="rounded-full border-2 border-sindoor/30 bg-rice px-3 py-2 text-xs font-bold text-sindoor transition hover:border-sindoor hover:bg-sindoor hover:text-rice"
                         >
                           {o.label}
                         </button>
@@ -176,7 +176,7 @@ export default function Chatbot() {
                 onChange={(e) => setDraft(e.target.value)}
                 placeholder="Type your question..."
                 aria-label="Your question"
-                className="field py-2 text-sm"
+                className="field py-2 text-base"
               />
               <button
                 type="submit"

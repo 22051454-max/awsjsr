@@ -192,7 +192,7 @@ function About() {
                 <p className="font-display text-2xl text-haldi">
                   <CountUp value={s.value} />
                 </p>
-                <p className="text-[11px] leading-tight text-rice/70">{s.label}</p>
+                <p className="text-xs leading-tight text-rice/70 sm:text-[11px]">{s.label}</p>
               </div>
             ))}
           </div>
@@ -375,7 +375,7 @@ function GalleryPreview() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-soil/85 via-transparent to-transparent" />
                 <div className="absolute bottom-0 p-4 text-rice">
-                  <span className="rounded-full bg-haldi px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-soil">
+                  <span className="rounded-full bg-haldi px-2.5 py-0.5 text-xs font-bold uppercase sm:text-[11px] tracking-wider text-soil">
                     {p.tag}
                   </span>
                   <p className="mt-2 font-display text-lg leading-tight">{p.title}</p>

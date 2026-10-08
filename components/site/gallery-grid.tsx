@@ -84,7 +84,7 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-soil/90 via-soil/10 to-transparent opacity-90 transition group-hover:opacity-100" />
                 <Expand className="absolute right-4 top-4 h-9 w-9 rounded-full bg-rice/90 p-2 text-soil opacity-0 transition group-hover:opacity-100" />
                 <div className="absolute bottom-0 p-5 text-rice">
-                  <span className="rounded-full bg-haldi px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-soil">
+                  <span className="rounded-full bg-haldi px-2.5 py-0.5 text-xs font-bold uppercase sm:text-[11px] tracking-wider text-soil">
                     {p.tag}
                   </span>
                   <p className="mt-2 font-display text-xl leading-tight">{p.title}</p>

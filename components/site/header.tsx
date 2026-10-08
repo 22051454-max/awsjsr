@@ -17,6 +17,16 @@ export default function Header() {
 
   useEffect(() => setOpen(false), [pathname])
 
+  // Keep the page behind the mobile menu from scrolling while it is open
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [open])
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
@@ -61,7 +71,7 @@ export default function Header() {
             />
             <span className="leading-tight">
               <span className="block font-display text-lg text-soil sm:text-xl">{org.name}</span>
-              <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-forest">
+              <span className="block text-xs font-semibold uppercase tracking-[0.18em] text-forest sm:text-[11px] sm:tracking-[0.2em]">
                 {org.place}
               </span>
             </span>
@@ -114,9 +124,9 @@ export default function Header() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="mud-wall absolute inset-x-0 top-full border-b-4 border-haldi lg:hidden"
+            className="mud-wall absolute inset-x-0 top-full max-h-[calc(100dvh-5.25rem)] overflow-y-auto overscroll-contain border-b-4 border-haldi lg:hidden"
           >
-            <ul className="container-x flex flex-col py-4">
+            <ul className="container-x flex flex-col py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
               {nav.map((item) => (
                 <li key={item.href}>
                   <Link

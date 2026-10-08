@@ -38,10 +38,10 @@ export default function Footer() {
 
         <div>
           <h3 className="font-display text-xl text-haldi">Explore</h3>
-          <ul className="mt-5 space-y-2.5">
+          <ul className="mt-3 md:mt-5 md:space-y-2.5">
             {[...nav, { name: "Donate", href: "/donate" }].map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-rice/75 transition hover:text-haldi">
+                <Link href={item.href} className="inline-block py-2 text-rice/75 transition hover:text-haldi md:py-0">
                   {item.name}
                 </Link>
               </li>
@@ -51,10 +51,10 @@ export default function Footer() {
 
         <div>
           <h3 className="font-display text-xl text-haldi">What we do</h3>
-          <ul className="mt-5 space-y-2.5">
+          <ul className="mt-3 md:mt-5 md:space-y-2.5">
             {services.map((s) => (
               <li key={s.slug}>
-                <Link href={`/our-work#${s.slug}`} className="text-rice/75 transition hover:text-haldi">
+                <Link href={`/our-work#${s.slug}`} className="inline-block py-2 text-rice/75 transition hover:text-haldi md:py-0">
                   {s.title}
                 </Link>
               </li>
@@ -70,18 +70,18 @@ export default function Footer() {
               <span>{org.address.join(", ")}</span>
             </li>
             <li className="flex gap-3">
-              <Phone className="mt-0.5 h-5 w-5 shrink-0 text-sindoor" />
+              <Phone className="mt-2 md:mt-0.5 h-5 w-5 shrink-0 text-sindoor" />
               <span className="flex flex-col">
                 {org.phones.map((p) => (
-                  <a key={p} href={telHref(p)} className="hover:text-haldi">
+                  <a key={p} href={telHref(p)} className="py-1.5 hover:text-haldi md:py-0">
                     {p}
                   </a>
                 ))}
               </span>
             </li>
             <li className="flex gap-3">
-              <Mail className="mt-0.5 h-5 w-5 shrink-0 text-sindoor" />
-              <a href={`mailto:${org.email}`} className="break-all hover:text-haldi">
+              <Mail className="mt-2 md:mt-0.5 h-5 w-5 shrink-0 text-sindoor" />
+              <a href={`mailto:${org.email}`} className="break-all py-1.5 hover:text-haldi md:py-0">
                 {org.email}
               </a>
             </li>
@@ -103,10 +103,10 @@ export default function Footer() {
             © {new Date().getFullYear()} {org.name}, {org.place}. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy-policy" className="hover:text-haldi">
+            <Link href="/privacy-policy" className="py-2 hover:text-haldi md:py-0">
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="hover:text-haldi">
+            <Link href="/terms-of-service" className="py-2 hover:text-haldi md:py-0">
               Terms of Service
             </Link>
           </div>
