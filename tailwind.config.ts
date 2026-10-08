@@ -1,7 +1,5 @@
 import type { Config } from "tailwindcss";
 
-// all in fixtures is set to tailwind v3 as interims solutions
-
 const config: Config = {
     darkMode: ["class"],
     content: [
@@ -12,7 +10,19 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			display: ['var(--font-display)', 'Georgia', 'serif'],
+  			sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+  			hand: ['var(--font-hand)', 'cursive'],
+  		},
   		colors: {
+  			clay: { DEFAULT: '#F4E9D8', deep: '#EADBC2', dark: '#D9C3A0' },
+  			soil: { DEFAULT: '#2B1B12', light: '#4A3022' },
+  			laterite: '#9B3B22',
+  			sindoor: '#C2542D',
+  			haldi: '#E0A22F',
+  			forest: { DEFAULT: '#2E5A3A', light: '#4C7A55' },
+  			rice: '#FFF8EC',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

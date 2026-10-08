@@ -4,48 +4,27 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    /* shadcn tokens, mapped onto the tribal earth palette */
+    --background: 37 58% 90%;
+    --foreground: 22 41% 12%;
+    --card: 38 100% 96%;
+    --card-foreground: 22 41% 12%;
+    --popover: 38 100% 96%;
+    --popover-foreground: 22 41% 12%;
+    --primary: 14 63% 47%;
+    --primary-foreground: 38 100% 96%;
+    --secondary: 140 32% 27%;
+    --secondary-foreground: 38 100% 96%;
+    --muted: 37 49% 84%;
+    --muted-foreground: 22 25% 32%;
+    --accent: 39 73% 53%;
+    --accent-foreground: 22 41% 12%;
+    --destructive: 12 64% 37%;
+    --destructive-foreground: 38 100% 96%;
+    --border: 33 38% 74%;
+    --input: 33 38% 74%;
+    --ring: 14 63% 47%;
+    --radius: 0.75rem;
   }
 }
 
@@ -53,131 +32,82 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-clay text-soil font-sans antialiased;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.22 0 0 0 0 0.12 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight;
+  }
+  ::selection {
+    @apply bg-haldi text-soil;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-sindoor ring-offset-2 ring-offset-clay;
   }
 }
 
-/* Custom animations */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
-  50% {
-    transform: translateY(-20px);
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-sindoor;
   }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(75, 59, 48, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(233, 100, 36, 0.5);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(233, 100, 36, 0.8);
-}
-
-/* Custom bow and arrow cursor - tribal themed */
-* {
-  cursor: url("/images/cursor-arrow.jpeg"), auto;
-}
-
-button,
-a,
-input,
-textarea,
-.clickable {
-  cursor: url("/images/cursor-arrow.jpeg"), pointer;
-}
-
-/* Ensure cursor works on all interactive elements */
-[role="button"],
-[tabindex],
-select,
-option {
-  cursor: url("/images/cursor-arrow.jpeg"), pointer;
-}
-
-/* Logo glow effect with beige color */
-.logo-glow {
-  background: radial-gradient(circle, rgba(194, 168, 126, 0.4) 0%, transparent 70%);
-  border-radius: 50%;
-  padding: 10px;
-  filter: drop-shadow(0 0 15px rgba(194, 168, 126, 0.8)) drop-shadow(0 0 25px rgba(194, 168, 126, 0.6));
-  display: inline-block;
-}
-
-.logo-seesaw-left {
-  animation: seeSawLeft 6s ease-in-out infinite;
-}
-
-.logo-seesaw-right {
-  animation: seeSawRight 7s ease-in-out infinite;
-}
-
-.logo-seesaw-gentle {
-  animation: seeSawGentle 8s ease-in-out infinite;
-}
-
-.logo-text-glow {
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
-  font-weight: 900;
-}
-
-/* Leaf animation - starting from above screen */
-@keyframes leafFall {
-  0% {
-    transform: translateY(-150px) rotate(0deg);
-    opacity: 1;
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 disabled:opacity-50;
   }
-  100% {
-    transform: translateY(calc(100vh + 50px)) rotate(360deg);
-    opacity: 0;
+  .btn-primary {
+    @apply btn bg-sindoor text-rice shadow-[0_4px_0_#7a2e18] hover:-translate-y-0.5 hover:bg-laterite active:translate-y-0.5 active:shadow-none;
+  }
+  .btn-ghost {
+    @apply btn border-2 border-current hover:bg-soil hover:text-rice hover:border-soil;
+  }
+  .btn-light {
+    @apply btn border-2 border-rice/70 text-rice hover:bg-rice hover:text-soil;
+  }
+  .card-earth {
+    @apply rounded-2xl border border-clay-dark/70 bg-rice/80 shadow-[0_1px_0_#fff_inset,0_10px_30px_-12px_rgba(43,27,18,.25)];
+  }
+  .field {
+    @apply w-full rounded-xl border-2 border-clay-dark bg-rice px-4 py-3 text-soil placeholder:text-soil/40 transition focus:border-sindoor focus:outline-none;
+  }
+  /* rice-paste white line art used on dark mud walls */
+  .mud-wall {
+    @apply bg-soil text-rice;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(155, 59, 34, 0.35), transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(46, 90, 58, 0.35), transparent 50%);
+  }
+  .laterite-wall {
+    @apply bg-laterite text-rice;
+    background-image: radial-gradient(circle at 80% 0%, rgba(224, 162, 47, 0.25), transparent 50%);
   }
 }
 
-.leaf {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(45deg, #4f6d4a, #c98c32);
-  border-radius: 0 100% 0 100%;
-  animation: leafFall linear infinite;
-  pointer-events: none;
-  top: -150px;
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
 }
-
-.leaf:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2px;
-  height: 10px;
-  background: #4b3b30;
-  transform: translate(-50%, -50%) rotate(45deg);
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
+@keyframes dance {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.animate-sway { animation: sway 6s ease-in-out infinite; transform-origin: 50% 100%; }
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-dance > g { animation: dance 1.2s ease-in-out infinite; }
+.animate-dance > g:nth-child(even) { animation-delay: .6s; }
 
-/* Text glow effect */
-.text-glow {
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-sway, .animate-marquee, .animate-dance > g { animation: none; }
 }

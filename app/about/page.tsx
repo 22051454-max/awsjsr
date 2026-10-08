@@ -1,239 +1,133 @@
-"use client"
-
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Target, Eye, Award, Building, TrendingUp, Shield, Leaf, Users, Calendar } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import AnimatedBackground from "@/components/animated-background"
+import { HandHeart, Leaf, ShieldCheck } from "lucide-react"
+import { SectionTitle, SohraiBand, Tree } from "@/components/motifs"
+import PageHero from "@/components/site/page-hero"
+import Reveal from "@/components/site/reveal"
+import { aboutStats, milestones, mission, policies, story, vision } from "@/lib/site"
+
+export const metadata: Metadata = { title: "About Us", description: story[0] }
+
+const policyIcons = [ShieldCheck, Leaf]
 
 export default function AboutPage() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-
-  const stats = [
-    { icon: Building, label: "Infrastructure Projects", value: "50+" },
-    { icon: Users, label: "Employees", value: "500+" },
-    { icon: Award, label: "Awards Received", value: "15+" },
-  ]
-
-  const milestones = [
-    {
-      year: "1998",
-      title: "Foundation",
-      description: "Adibasi Welfare Society was established with a vision to empower tribal communities",
-    },
-    {
-      year: "2005",
-      title: "First Training Center",
-      description: "Opened our first skill development center for women's empowerment",
-    },
-    {
-      year: "2010",
-      title: "Industrial Partnerships",
-      description: "Started partnerships with major industrial companies for employment generation",
-    },
-    {
-      year: "2015",
-      title: "Healthcare Initiative",
-      description: "Launched comprehensive healthcare programs for tribal communities",
-    },
-    {
-      year: "2020",
-      title: "Digital Literacy",
-      description: "Introduced computer training and digital literacy programs",
-    },
-    {
-      year: "2024",
-      title: "Sustainable Growth",
-      description: "Achieved sustainable growth with 500+ employees and multiple service verticals",
-    },
-  ]
-
   return (
-    <div className="min-h-screen relative">
-      <AnimatedBackground />
+    <>
+      <PageHero eyebrow="About Us" title="A bridge between tradition and progress">
+        The Adibasi Welfare Society has been a beacon of hope for tribal communities, working tirelessly to bridge the
+        gap between tradition and progress.
+      </PageHero>
 
-      {/* Header */}
-      <div className="relative z-10 pt-24 pb-12">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center mb-8">
-            <Link href="/">
-              <Button variant="ghost" className="text-white hover:text-[#F4A300] mr-4">
-                <ArrowLeft className="w-5 h-5 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6">About Us</h1>
-            <div className="w-24 h-1 bg-[#E96424] mx-auto mb-8" />
-            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-semibold">
-              The Adibasi Welfare Society has been a beacon of hope for tribal communities, working tirelessly to bridge
-              the gap between tradition and progress.
-            </p>
-          </motion.div>
-
-          {/* Vision & Mission */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16" ref={ref}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="space-y-8"
-            >
-              <div className="bg-[#4B3B30]/40 backdrop-blur-sm rounded-2xl p-8 border-2 border-[#C98C32]/50">
-                <div className="flex items-center mb-4">
-                  <Eye className="w-8 h-8 text-[#E96424] mr-3" />
-                  <h3 className="text-2xl font-black text-white">Our Vision</h3>
-                </div>
-                <p className="text-white leading-relaxed font-medium">
-                  To create a world where tribal communities thrive with dignity, preserving their rich cultural
-                  heritage while embracing sustainable development and modern opportunities.
-                </p>
-              </div>
-
-              <div className="bg-[#4B3B30]/40 backdrop-blur-sm rounded-2xl p-8 border-2 border-[#C98C32]/50">
-                <div className="flex items-center mb-4">
-                  <Target className="w-8 h-8 text-[#E96424] mr-3" />
-                  <h3 className="text-2xl font-black text-white">Our Mission</h3>
-                </div>
-                <p className="text-white leading-relaxed font-medium">
-                  To empower tribal communities through comprehensive welfare programs, education, healthcare,
-                  employment , and sustainable development initiatives that honor their traditions.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Stats Grid */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="grid grid-cols-2 gap-6"
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
-                  className="bg-[#4F6D4A]/20 backdrop-blur-sm rounded-xl p-6 text-center border border-[#C98C32]/30 hover:border-[#E96424]/50 transition-all duration-300"
-                >
-                  {stat.icon && <stat.icon className="w-10 h-10 text-[#E96424] mx-auto mb-3" />}
-                  <h4 className="text-2xl font-bold text-[#F4A300] mb-2">{stat.value}</h4>
-                  <p className="text-[#C2A87E] text-sm">{stat.label}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Our Story */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.9, duration: 0.8 }}
-            className="mb-16"
-          >
-            <div className="bg-[#4B3B30]/40 backdrop-blur-sm rounded-2xl p-8 border-2 border-[#C98C32]/50">
-              <h3 className="text-3xl font-black text-white mb-6 text-center">Our Story</h3>
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <p className="text-white leading-relaxed font-medium mb-4">
-                    Founded in 1998, the Adibasi Welfare Society emerged from a deep commitment to uplift and empower
-                    tribal communities in Jharkhand. What started as a small initiative has grown into a comprehensive
-                    organization serving over 1000 families across 50+ villages.
-                  </p>
-                  <p className="text-white leading-relaxed font-medium mb-4">
-                    Our journey has been marked by unwavering dedication to preserving tribal culture while providing
-                    modern opportunities for growth and development. We believe in sustainable progress that honors
-                    tradition.
-                  </p>
-                  <p className="text-white leading-relaxed font-medium">
-                    Today, we stand as a bridge between tribal communities and the modern world, ensuring that progress
-                    doesn't come at the cost of cultural identity.
-                  </p>
-                </div>
-                <div className="relative h-64 rounded-xl overflow-hidden">
-                  <Image src="/images/gallery/women-employment.jpeg" alt="Our Story" fill className="object-cover" />
-                </div>
-              </div>
+      <section className="py-24">
+        <div className="container-x grid items-center gap-16 lg:grid-cols-[1fr_1.1fr]">
+          <Reveal className="relative">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-t-full border-[10px] border-rice shadow-xl">
+              <Image
+                src="/images/gallery/employment-females.jpeg"
+                alt="Women employed through the society"
+                fill
+                sizes="(min-width: 1024px) 34rem, 95vw"
+                className="object-cover"
+              />
             </div>
-          </motion.div>
+            <p className="absolute -bottom-6 left-1/2 w-max -translate-x-1/2 rounded-full bg-forest px-6 py-3 font-hand text-xl text-rice shadow-lg">
+              Est. 1998, Ghorabandha
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <SectionTitle eyebrow="Our story" title="From a small initiative to 1000+ families" align="left" />
+            <div className="-mt-4 space-y-5 text-lg leading-relaxed text-soil/80">
+              {story.map((p) => (
+                <p key={p.slice(0, 20)}>{p}</p>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-          {/* Timeline */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="mb-16"
-          >
-            <h3 className="text-3xl font-black text-white mb-12 text-center">Our Journey</h3>
-            <div className="space-y-8">
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={milestone.year}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 1.4 + index * 0.1, duration: 0.6 }}
-                  className={`flex items-center gap-8 ${index % 2 === 1 ? "flex-row-reverse" : ""}`}
-                >
-                  <div className="flex-1">
-                    <div className="bg-[#4B3B30]/40 backdrop-blur-sm rounded-2xl p-6 border border-[#C98C32]/50">
-                      <div className="flex items-center mb-3">
-                        <Calendar className="w-5 h-5 text-[#E96424] mr-2" />
-                        <span className="text-[#F4A300] font-bold text-lg">{milestone.year}</span>
-                      </div>
-                      <h4 className="text-white font-bold text-xl mb-2">{milestone.title}</h4>
-                      <p className="text-white font-medium">{milestone.description}</p>
+      <section className="laterite-wall relative overflow-hidden py-20">
+        <Tree className="pointer-events-none absolute -right-8 -top-10 h-96 text-rice/[0.07]" />
+        <div className="container-x relative grid gap-6 md:grid-cols-2">
+          {[
+            { title: "Our Vision", text: vision },
+            { title: "Our Mission", text: mission },
+          ].map((c, i) => (
+            <Reveal
+              key={c.title}
+              delay={i * 0.1}
+              className="rounded-3xl border border-rice/20 bg-rice/10 p-8 backdrop-blur-sm md:p-10"
+            >
+              <p className="font-hand text-xl text-haldi">{i === 0 ? "Where we are going" : "How we get there"}</p>
+              <h2 className="mt-1 text-4xl text-rice">{c.title}</h2>
+              <p className="mt-4 text-lg leading-relaxed text-rice/85">{c.text}</p>
+            </Reveal>
+          ))}
+        </div>
+        <div className="container-x relative mt-10">
+          <dl className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {aboutStats.map((s) => (
+              <div key={s.label} className="flex flex-col-reverse rounded-2xl bg-soil/40 p-6 text-center">
+                <dt className="mt-1 text-sm text-rice/70">{s.label}</dt>
+                <dd className="font-display text-4xl text-haldi">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section className="py-24">
+        <div className="container-x max-w-4xl">
+          <SectionTitle eyebrow="Our journey" title="Milestones along the path" />
+          <ol className="relative space-y-10 before:absolute before:bottom-2 before:left-[2.1rem] before:top-2 before:border-l-2 before:border-dashed before:border-sindoor/40 md:before:left-1/2">
+            {milestones.map((m, i) => (
+              <Reveal
+                as="li"
+                key={m.year}
+                className="relative grid grid-cols-[4.25rem_1fr] items-start gap-5 md:grid-cols-2 md:gap-14"
+              >
+                <span className="relative z-10 grid h-[4.25rem] w-[4.25rem] place-items-center rounded-full border-4 border-clay bg-forest font-display text-lg text-rice md:absolute md:left-1/2 md:-translate-x-1/2">
+                  {m.year}
+                </span>
+                <div className={`card-earth p-6 ${i % 2 ? "md:col-start-2" : "md:col-start-1 md:text-right"} md:mx-6`}>
+                  <h3 className="text-2xl">{m.title}</h3>
+                  <p className="mt-1 leading-relaxed text-soil/70">{m.description}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="border-t border-clay-dark bg-clay-deep/60 py-24">
+        <div className="container-x">
+          <SectionTitle eyebrow="What guides us" title="Our policies" />
+          <div className="grid gap-6 md:grid-cols-2">
+            {policies.map((p, i) => {
+              const Icon = policyIcons[i]
+              return (
+                <Reveal key={p.title} delay={i * 0.1} className="card-earth overflow-hidden">
+                  <SohraiBand className="h-3 text-forest" />
+                  <div className="flex gap-5 p-8">
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-forest text-rice">
+                      <Icon className="h-7 w-7" />
+                    </span>
+                    <div>
+                      <h3 className="text-2xl">{p.title}</h3>
+                      <p className="mt-2 leading-relaxed text-soil/75">{p.text}</p>
                     </div>
                   </div>
-                  <div className="w-4 h-4 bg-[#E96424] rounded-full flex-shrink-0" />
-                  <div className="flex-1" />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Policies */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="grid md:grid-cols-2 gap-8"
-          >
-            <div className="bg-[#4B3B30]/40 backdrop-blur-sm rounded-2xl p-8 border-2 border-[#C98C32]/50">
-              <div className="flex items-center mb-4">
-                <Shield className="w-8 h-8 text-[#E96424] mr-3" />
-                <h3 className="text-2xl font-black text-white">Health & Safety Policy</h3>
-              </div>
-              <p className="text-white leading-relaxed font-medium">
-                We prioritize the health and safety of our community members and employees, implementing comprehensive
-                safety protocols and healthcare initiatives.
-              </p>
-            </div>
-
-            <div className="bg-[#4B3B30]/40 backdrop-blur-sm rounded-2xl p-8 border-2 border-[#C98C32]/50">
-              <div className="flex items-center mb-4">
-                <Leaf className="w-8 h-8 text-[#E96424] mr-3" />
-                <h3 className="text-2xl font-black text-white">Environment Policy</h3>
-              </div>
-              <p className="text-white leading-relaxed font-medium">
-                Committed to environmental sustainability, we promote eco-friendly practices and conservation efforts
-                that align with tribal values of living in harmony with nature.
-              </p>
-            </div>
-          </motion.div>
+                </Reveal>
+              )
+            })}
+          </div>
+          <div className="mt-14 text-center">
+            <Link href="/donate" className="btn-primary px-8 py-4 text-base">
+              <HandHeart className="h-5 w-5" /> Support Our Mission
+            </Link>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }
