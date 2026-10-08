@@ -24,7 +24,7 @@ export default function Intro() {
     }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
     setShow(true)
-    const t = setTimeout(() => setShow(false), 3200)
+    const t = setTimeout(() => setShow(false), 2500)
     return () => clearTimeout(t)
   }, [pathname])
 
@@ -34,7 +34,7 @@ export default function Intro() {
         <motion.div
           role="presentation"
           onClick={() => setShow(false)}
-          className="mud-wall fixed inset-0 z-[90] grid cursor-pointer place-items-center overflow-hidden"
+          className="mud-wall fixed inset-0 z-[90] grid place-items-center overflow-hidden"
           exit={{ opacity: 0, scale: 1.04 }}
           transition={{ duration: 0.6 }}
         >

@@ -2,7 +2,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ArrowUpRight, HandHeart, Mail, MapPin, Phone } from "lucide-react"
 import { SectionTitle, SohraiBand, Sun, TarpaCircle, Tree, WarliDancers } from "@/components/motifs"
+import Birds from "@/components/site/birds"
+import CountUp from "@/components/site/count-up"
+import Fireflies from "@/components/site/fireflies"
+import Marquee from "@/components/site/marquee"
 import Reveal from "@/components/site/reveal"
+import Slideshow, { type Slide } from "@/components/site/slideshow"
 import {
   aboutStats,
   gallery,
@@ -17,11 +22,45 @@ import {
   vision,
 } from "@/lib/site"
 
+const heroSlides: Slide[] = [
+  {
+    src: "/images/tribal-pattern.jpeg",
+    alt: "Tribal wall painting of a community dancing around a fire",
+    caption: "Our heritage",
+  },
+  {
+    src: "/images/gallery/employment-females.jpeg",
+    alt: "Women workers employed through AWS",
+    caption: "Employment for women",
+  },
+  {
+    src: "/images/gallery/tailoring-training.jpeg",
+    alt: "Women at a dress making training centre",
+    caption: "Skill training",
+  },
+  { src: "/images/gallery/health-camp.jpeg", alt: "A free health checkup camp", caption: "Free health camps" },
+  { src: "/images/gallery/computer-education.jpeg", alt: "Youth learning computers", caption: "Digital literacy" },
+  { src: "/images/gallery/bus-fleet.jpeg", alt: "The AWS bus fleet", caption: "Bus services" },
+]
+
+const insetSlides: Slide[] = [
+  { src: "/images/gallery/bus-fleet.jpeg", alt: "" },
+  { src: "/images/gallery/infrastructure-equipment.jpeg", alt: "" },
+  { src: "/images/gallery/industrial-cleaning.png", alt: "" },
+  { src: "/images/gallery/employment-females.jpeg", alt: "" },
+]
+
+const aboutSlides: Slide[] = [
+  { src: "/images/gallery/tailoring-training.jpeg", alt: "Women at a dress making training centre" },
+  { src: "/images/gallery/computer-education.jpeg", alt: "Computer training for youth" },
+  { src: "/images/gallery/health-camp.jpeg", alt: "A free health checkup camp" },
+]
+
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <Marquee />
+      <ServicesMarquee />
       <About />
       <Services />
       <ArtBanner />
@@ -37,7 +76,8 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <Tree className="pointer-events-none absolute -left-12 top-10 hidden h-[24rem] text-forest/[0.06] xl:block" />
+      <Tree className="animate-sway pointer-events-none absolute -left-12 top-10 hidden h-[24rem] text-forest/[0.06] xl:block" />
+      <Birds className="text-soil/40" />
       <div className="container-x grid items-center gap-14 pb-16 pt-12 md:pt-20 lg:grid-cols-[1.05fr_1fr]">
         <Reveal>
           <span className="eyebrow">
@@ -75,30 +115,29 @@ function Hero() {
 
         <Reveal delay={0.15} className="relative mx-auto w-full max-w-lg">
           {/* Painted wall in an arch, like a village doorway */}
-          <div className="relative aspect-[4/5] overflow-hidden rounded-t-full border-[10px] border-rice shadow-[0_30px_60px_-20px_rgba(43,27,18,.55)]">
-            <Image
-              src="/images/tribal-pattern.jpeg"
-              alt="Tribal wall painting of a community dancing around a fire"
-              fill
-              priority
-              sizes="(min-width: 1024px) 32rem, 90vw"
-              className="object-cover"
+          <Slideshow
+            slides={heroSlides}
+            priority
+            showCaption
+            sizes="(min-width: 1024px) 32rem, 90vw"
+            className="aspect-[4/5] rounded-t-full border-[10px] border-rice shadow-[0_30px_60px_-20px_rgba(43,27,18,.55)]"
+          />
+          <div className="animate-float absolute -bottom-8 -left-4 w-44 sm:-left-10 sm:w-56">
+            <Slideshow
+              slides={insetSlides}
+              interval={3500}
+              showDots={false}
+              sizes="14rem"
+              className="aspect-[4/3] rounded-2xl border-[6px] border-rice shadow-xl"
             />
           </div>
-          <div className="absolute -bottom-8 -left-4 w-44 overflow-hidden rounded-2xl border-[6px] border-rice shadow-xl sm:-left-10 sm:w-56">
-            <Image
-              src="/images/gallery/employment-females.jpeg"
-              alt="Women workers employed through AWS"
-              width={448}
-              height={300}
-              className="aspect-[4/3] object-cover"
-            />
-          </div>
-          <div className="absolute -right-3 top-10 rounded-2xl bg-forest px-5 py-4 text-rice shadow-xl sm:-right-8">
+          <div className="animate-float absolute -right-3 top-10 z-10 rounded-2xl bg-forest px-5 py-4 text-rice shadow-xl sm:-right-8">
             <p className="font-display text-4xl leading-none text-haldi">25+</p>
             <p className="mt-1 text-xs font-semibold uppercase tracking-widest">years of seva</p>
           </div>
-          <Sun className="animate-sway absolute -top-6 right-16 h-16 w-16 text-haldi" />
+          <div className="animate-sway absolute -top-6 right-16 z-10">
+            <Sun className="animate-spin-slow h-16 w-16 text-haldi" />
+          </div>
         </Reveal>
       </div>
 
@@ -110,7 +149,9 @@ function Hero() {
               className={`flex flex-col-reverse p-6 text-center md:p-8 ${i > 0 ? "md:border-l" : ""} ${i % 2 ? "border-l md:border-l" : ""} ${i > 1 ? "border-t md:border-t-0" : ""} border-clay-dark`}
             >
               <dt className="mt-1 text-sm font-semibold text-soil/60">{s.label}</dt>
-              <dd className="font-display text-4xl text-laterite md:text-5xl">{s.value}</dd>
+              <dd className="font-display text-4xl text-laterite md:text-5xl">
+                <CountUp value={s.value} />
+              </dd>
             </div>
           ))}
         </dl>
@@ -119,19 +160,17 @@ function Hero() {
   )
 }
 
-function Marquee() {
-  const words = services.map((s) => s.title)
-  const row = [...words, ...words]
+function ServicesMarquee() {
   return (
-    <div className="overflow-hidden bg-haldi py-4 text-soil" aria-hidden>
-      <div className="animate-marquee flex w-max items-center gap-8">
-        {row.map((w, i) => (
-          <span key={i} className="flex items-center gap-8 font-display text-2xl">
-            {w}
-            <Sun className="h-6 w-6 text-laterite" />
+    <div className="bg-haldi py-4 text-soil" aria-hidden>
+      <Marquee speed={35}>
+        {services.map((s) => (
+          <span key={s.slug} className="flex items-center gap-10 whitespace-nowrap font-display text-2xl">
+            {s.title}
+            <Sun className="animate-spin-slow h-6 w-6 text-laterite" />
           </span>
         ))}
-      </div>
+      </Marquee>
     </div>
   )
 }
@@ -141,19 +180,18 @@ function About() {
     <section className="py-24">
       <div className="container-x grid items-center gap-16 lg:grid-cols-2">
         <Reveal className="relative">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border-[8px] border-rice shadow-xl">
-            <Image
-              src="/images/gallery/tailoring-training.jpeg"
-              alt="Women at a dress making training centre"
-              fill
-              sizes="(min-width: 1024px) 40rem, 95vw"
-              className="object-cover"
-            />
-          </div>
+          <Slideshow
+            slides={aboutSlides}
+            interval={5000}
+            sizes="(min-width: 1024px) 40rem, 95vw"
+            className="aspect-[4/3] rounded-[2rem] border-[8px] border-rice shadow-xl"
+          />
           <div className="absolute -bottom-10 -right-2 grid w-64 grid-cols-2 gap-px overflow-hidden rounded-2xl bg-clay-dark shadow-xl sm:-right-8">
             {aboutStats.map((s) => (
               <div key={s.label} className="bg-soil p-4 text-rice">
-                <p className="font-display text-2xl text-haldi">{s.value}</p>
+                <p className="font-display text-2xl text-haldi">
+                  <CountUp value={s.value} />
+                </p>
                 <p className="text-[11px] leading-tight text-rice/70">{s.label}</p>
               </div>
             ))}
@@ -189,7 +227,9 @@ function About() {
 function Services() {
   return (
     <section className="laterite-wall relative overflow-hidden py-24">
-      <WarliDancers className="absolute inset-x-0 top-6 h-12 text-rice/15" />
+      <Marquee speed={60} className="absolute inset-x-0 top-6" gap="gap-0">
+        <WarliDancers className="h-12 w-[60rem] text-rice/15" />
+      </Marquee>
       <div className="container-x relative pt-6">
         <SectionTitle eyebrow="What we do" title="Work that feeds families and builds futures" tone="light">
           Comprehensive services designed to uplift and empower tribal communities through sustainable development and
@@ -284,9 +324,9 @@ function Partners() {
         <SectionTitle eyebrow="Trusted by industry" title="Our valued partners">
           Leading industrial partners who share our commitment to tribal welfare and sustainable development.
         </SectionTitle>
-        <ul className="grid grid-cols-2 gap-5 md:grid-cols-4">
-          {partners.map((p, i) => (
-            <Reveal as="li" key={p.name} delay={i * 0.08}>
+        <Marquee speed={30} gap="gap-5">
+          {[...partners, ...partners].map((p, i) => (
+            <div key={i} className="w-56 shrink-0">
               <Link
                 href="/customers"
                 className="group flex h-full flex-col items-center rounded-3xl border-2 border-transparent bg-white p-6 shadow-sm transition hover:border-haldi"
@@ -297,18 +337,18 @@ function Partners() {
                 <p className="mt-4 font-display text-lg text-soil">{p.name}</p>
                 <p className="text-xs font-semibold uppercase tracking-widest text-soil/50">Since {p.since}</p>
               </Link>
-            </Reveal>
+            </div>
           ))}
-        </ul>
+        </Marquee>
       </div>
     </section>
   )
 }
 
 function GalleryPreview() {
-  const shots = gallery.slice(0, 4)
+  const rows = [gallery, [...gallery].reverse()]
   return (
-    <section className="py-24">
+    <section className="overflow-hidden py-24">
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionTitle eyebrow="Photo gallery" title="Moments from the field" align="left" />
@@ -316,32 +356,34 @@ function GalleryPreview() {
             View full gallery <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="grid auto-rows-[11rem] grid-cols-2 gap-4 md:auto-rows-[13rem] md:grid-cols-4">
-          {shots.map((p, i) => (
-            <Reveal
-              key={p.src}
-              delay={i * 0.06}
-              className={i === 0 ? "col-span-2 row-span-2" : i === 3 ? "col-span-2" : ""}
-            >
-              <Link href="/gallery" className="group relative block h-full overflow-hidden rounded-3xl">
+      </div>
+      <div className="-rotate-1 space-y-4">
+        {rows.map((row, r) => (
+          <Marquee key={r} reverse={r === 1} speed={r ? 55 : 45} gap="gap-4">
+            {row.map((p) => (
+              <Link
+                key={p.src}
+                href="/gallery"
+                className="group relative block h-56 w-80 shrink-0 overflow-hidden rounded-3xl border-[5px] border-rice shadow-lg md:h-64 md:w-96"
+              >
                 <Image
                   src={p.src}
                   alt={p.title}
                   fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover transition duration-700 group-hover:scale-105"
+                  sizes="24rem"
+                  className="object-cover transition duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-soil/85 via-soil/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-soil/85 via-transparent to-transparent" />
                 <div className="absolute bottom-0 p-4 text-rice">
                   <span className="rounded-full bg-haldi px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-soil">
                     {p.tag}
                   </span>
-                  <p className="mt-2 font-display text-lg leading-tight md:text-xl">{p.title}</p>
+                  <p className="mt-2 font-display text-lg leading-tight">{p.title}</p>
                 </div>
               </Link>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </Marquee>
+        ))}
       </div>
     </section>
   )
@@ -351,7 +393,10 @@ function DonateCta() {
   return (
     <section className="container-x pb-24">
       <div className="mud-wall relative overflow-hidden rounded-[2.5rem] px-6 py-16 text-center md:px-16 md:py-20">
-        <TarpaCircle className="pointer-events-none absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 text-rice/[0.06]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2">
+          <TarpaCircle className="animate-spin-slow h-full w-full text-rice/[0.06]" />
+        </div>
+        <Fireflies />
         <Reveal className="relative mx-auto max-w-2xl">
           <span className="eyebrow text-haldi">
             <Sun className="h-4 w-4" /> Join the circle

@@ -89,12 +89,15 @@ export function TarpaCircle({ className, musician = true }: Props & { musician?:
     <svg aria-hidden viewBox="-200 -200 400 400" className={className}>
       <circle r="190" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 7" strokeLinecap="round" />
       {rings.map(({ r, n }, ri) => (
-        <g key={r} className="animate-dance">
+        <g key={r}>
           {Array.from({ length: n }, (_, i) => {
             const a = (360 / n) * i + ri * 9
             return (
               <g key={i} transform={`rotate(${a}) translate(0 ${-r}) scale(.8) translate(-20 -30)`}>
-                <WarliFigure arms="join" />
+                {/* inner group animates; the outer one keeps its placement transform */}
+                <g className={i % 2 ? "dance-b" : "dance-a"}>
+                  <WarliFigure arms="join" />
+                </g>
               </g>
             )
           })}

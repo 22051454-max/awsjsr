@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Check, HandHeart } from "lucide-react"
 import { SohraiBand, Sun } from "@/components/motifs"
 import PageHero from "@/components/site/page-hero"
+import CountUp from "@/components/site/count-up"
 import Reveal from "@/components/site/reveal"
 import { impactStats, services } from "@/lib/site"
 
@@ -26,7 +27,9 @@ export default function OurWorkPage() {
           {impactStats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.06} className="card-earth flex flex-col-reverse p-6 text-center">
               <dt className="mt-1 text-sm font-semibold text-soil/60">{s.label}</dt>
-              <dd className="font-display text-4xl text-laterite">{s.value}</dd>
+              <dd className="font-display text-4xl text-laterite">
+                <CountUp value={s.value} />
+              </dd>
             </Reveal>
           ))}
         </dl>

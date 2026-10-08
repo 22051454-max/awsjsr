@@ -44,6 +44,24 @@
   h3 {
     @apply font-display tracking-tight;
   }
+  /* Tribal arrow cursor */
+  html {
+    cursor: url("/cursors/arrow.png") 2 2, auto;
+  }
+  a,
+  button,
+  select,
+  summary,
+  label,
+  [role="button"],
+  [role="tab"],
+  [role="presentation"] {
+    cursor: url("/cursors/arrow-hover.png") 2 2, pointer;
+  }
+  input,
+  textarea {
+    cursor: text;
+  }
   ::selection {
     @apply bg-haldi text-soil;
   }
@@ -90,6 +108,28 @@
   }
 }
 
+@keyframes fly {
+  from { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(calc(50vw + 3rem)) translateY(-18px); }
+  to { transform: translateX(calc(100vw + 6rem)) translateY(6px); }
+}
+@keyframes flap {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(-0.4); }
+}
+@keyframes firefly {
+  0%, 100% { transform: translate(0, 0); opacity: 0; }
+  20% { opacity: 1; }
+  50% { transform: translate(24px, -40px); opacity: 0.4; }
+  80% { opacity: 1; }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 @keyframes sway {
   0%, 100% { transform: rotate(-3deg); }
   50% { transform: rotate(3deg); }
@@ -98,16 +138,28 @@
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+@keyframes marquee-copy {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
 @keyframes dance {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
 }
+.animate-fly { animation: fly 28s linear infinite; }
+.animate-flap { animation: flap 0.9s ease-in-out infinite; transform-origin: 50% 60%; transform-box: fill-box; }
+.animate-firefly { animation: firefly 8s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 40s linear infinite; }
+.animate-float { animation: float 5s ease-in-out infinite; }
 .animate-sway { animation: sway 6s ease-in-out infinite; transform-origin: 50% 100%; }
 .animate-marquee { animation: marquee 40s linear infinite; }
-.animate-dance > g { animation: dance 1.2s ease-in-out infinite; }
-.animate-dance > g:nth-child(even) { animation-delay: .6s; }
+.animate-marquee-copy { animation: marquee-copy 40s linear infinite; }
+.dance-a, .dance-b { animation: dance 1.2s ease-in-out infinite; }
+.dance-b { animation-delay: .6s; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .animate-sway, .animate-marquee, .animate-dance > g { animation: none; }
+  .animate-sway, .animate-marquee, .animate-marquee-copy, .dance-a, .dance-b, .animate-fly, .animate-flap,
+  .animate-firefly, .animate-spin-slow, .animate-float { animation: none; }
+  .animate-fly, .animate-firefly { display: none; }
 }

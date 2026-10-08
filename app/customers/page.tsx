@@ -4,7 +4,9 @@ import Link from "next/link"
 import { Check } from "lucide-react"
 import { SectionTitle, SohraiBand, WarliDancers } from "@/components/motifs"
 import PageHero from "@/components/site/page-hero"
+import CountUp from "@/components/site/count-up"
 import Reveal from "@/components/site/reveal"
+import Slideshow from "@/components/site/slideshow"
 import { partnerStats, partners, whyPartner } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -25,7 +27,9 @@ export default function PartnersPage() {
           {partnerStats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.06} className="card-earth flex flex-col-reverse p-6 text-center">
               <dt className="mt-1 text-sm font-semibold text-soil/60">{s.label}</dt>
-              <dd className="font-display text-4xl text-laterite">{s.value}</dd>
+              <dd className="font-display text-4xl text-laterite">
+                <CountUp value={s.value} />
+              </dd>
             </Reveal>
           ))}
         </dl>
@@ -84,15 +88,33 @@ export default function PartnersPage() {
               Become a partner
             </Link>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border-[8px] border-rice/90 shadow-2xl">
-            <Image
-              src="/images/gallery/bus-fleet.jpeg"
-              alt="The society's bus fleet"
-              fill
-              sizes="(min-width: 1024px) 40rem, 95vw"
-              className="object-cover"
-            />
-          </div>
+          <Slideshow
+            slides={[
+              {
+                src: "/images/gallery/bus-fleet.jpeg",
+                alt: "The society's bus fleet",
+                caption: "Transport for partners",
+              },
+              {
+                src: "/images/gallery/infrastructure-equipment.jpeg",
+                alt: "Material handling equipment",
+                caption: "Material handling",
+              },
+              {
+                src: "/images/gallery/industrial-cleaning.png",
+                alt: "Industrial cleaning team",
+                caption: "Industrial cleaning",
+              },
+              {
+                src: "/images/gallery/employment-females.jpeg",
+                alt: "Women workforce",
+                caption: "Trained tribal workforce",
+              },
+            ]}
+            showCaption
+            sizes="(min-width: 1024px) 40rem, 95vw"
+            className="aspect-[4/3] rounded-[2rem] border-[8px] border-rice/90 shadow-2xl"
+          />
         </div>
       </section>
     </>

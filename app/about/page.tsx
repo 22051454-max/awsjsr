@@ -4,7 +4,9 @@ import Link from "next/link"
 import { HandHeart, Leaf, ShieldCheck } from "lucide-react"
 import { SectionTitle, SohraiBand, Tree } from "@/components/motifs"
 import PageHero from "@/components/site/page-hero"
+import CountUp from "@/components/site/count-up"
 import Reveal from "@/components/site/reveal"
+import Slideshow from "@/components/site/slideshow"
 import { aboutStats, milestones, mission, policies, story, vision } from "@/lib/site"
 
 export const metadata: Metadata = { title: "About Us", description: story[0] }
@@ -22,15 +24,16 @@ export default function AboutPage() {
       <section className="py-24">
         <div className="container-x grid items-center gap-16 lg:grid-cols-[1fr_1.1fr]">
           <Reveal className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-t-full border-[10px] border-rice shadow-xl">
-              <Image
-                src="/images/gallery/employment-females.jpeg"
-                alt="Women employed through the society"
-                fill
-                sizes="(min-width: 1024px) 34rem, 95vw"
-                className="object-cover"
-              />
-            </div>
+            <Slideshow
+              slides={[
+                { src: "/images/gallery/employment-females.jpeg", alt: "Women employed through the society" },
+                { src: "/images/gallery/tailoring-training.jpeg", alt: "Dress making training" },
+                { src: "/images/tribal-pattern.jpeg", alt: "Tribal wall painting" },
+                { src: "/images/gallery/health-camp.jpeg", alt: "Free health checkup camp" },
+              ]}
+              sizes="(min-width: 1024px) 34rem, 95vw"
+              className="aspect-[4/5] rounded-t-full border-[10px] border-rice shadow-xl"
+            />
             <p className="absolute -bottom-6 left-1/2 w-max -translate-x-1/2 rounded-full bg-forest px-6 py-3 font-hand text-xl text-rice shadow-lg">
               Est. 1998, Ghorabandha
             </p>
@@ -69,7 +72,9 @@ export default function AboutPage() {
             {aboutStats.map((s) => (
               <div key={s.label} className="flex flex-col-reverse rounded-2xl bg-soil/40 p-6 text-center">
                 <dt className="mt-1 text-sm text-rice/70">{s.label}</dt>
-                <dd className="font-display text-4xl text-haldi">{s.value}</dd>
+                <dd className="font-display text-4xl text-haldi">
+                  <CountUp value={s.value} />
+                </dd>
               </div>
             ))}
           </dl>

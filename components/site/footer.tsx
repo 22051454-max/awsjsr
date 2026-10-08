@@ -2,13 +2,18 @@ import Image from "next/image"
 import Link from "next/link"
 import { Clock, Mail, MapPin, Phone } from "lucide-react"
 import { SohraiBand, Tree, WarliDancers } from "@/components/motifs"
+import Marquee from "@/components/site/marquee"
+import Fireflies from "@/components/site/fireflies"
 import { nav, org, services, telHref } from "@/lib/site"
 
 export default function Footer() {
   return (
     <footer className="mud-wall relative mt-0 overflow-hidden">
       <SohraiBand className="h-4 text-haldi" />
-      <WarliDancers className="mt-6 h-14 text-rice/25" />
+      <Marquee speed={70} reverse gap="gap-0" className="mt-6">
+        <WarliDancers className="h-14 w-[60rem] text-rice/25" />
+      </Marquee>
+      <Fireflies count={12} />
 
       <Tree className="pointer-events-none absolute -right-6 bottom-10 hidden h-80 text-rice/[0.06] md:block" />
 
