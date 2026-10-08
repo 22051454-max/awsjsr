@@ -37,7 +37,7 @@ export default function ContactPage() {
                 <h2 className="text-2xl">{title}</h2>
                 {lines.map((l) =>
                   href ? (
-                    <a key={l} href={href(l)} className="block break-all font-semibold text-soil/80 hover:text-sindoor">
+                    <a key={l} href={href(l)} className="block break-all py-1.5 font-semibold text-soil/80 hover:text-sindoor sm:py-0">
                       {l}
                     </a>
                   ) : (
